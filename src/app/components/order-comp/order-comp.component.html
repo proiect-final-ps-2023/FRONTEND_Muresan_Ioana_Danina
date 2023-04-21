@@ -1,0 +1,29 @@
+<div class="orders">
+  <h2 style="color: #930546">Orders</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Total Price</th>
+      <th>City</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>User Id</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.date }}</td>
+      <td>{{ order.total_price }}</td>
+      <td>{{ order.city }}</td>
+      <td>{{ order.address }}</td>
+      <td>{{ order.phone_number }}</td>
+      <td>{{ order.user_id }}</td>
+      <td><button style="background-color: #f6dada" (click)="deleteOrder(order.id)">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

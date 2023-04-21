@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #faeeee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffbdbd;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px #ccc;
+      padding: 20px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      background-color: #e14167;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #c01249;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+    <h2>Register</h2>
+    <label for="name">Name</label><br>
+    <input type="text" [(ngModel)]="userNew.name" id="name" name="name"><br>
+
+    <label for="email">Email</label><br>
+    <input type="text" [(ngModel)]="userNew.email" id="email" name="email"><br>
+
+    <label for="username ">Username</label><br>
+    <input type="text" [(ngModel)]="userNew.username" id="username " name="username"><br>
+
+    <label for="new-password">Password</label><br>
+    <input type="password"  [(ngModel)]="userNew.password"  id="new-password" name="new-password"><br>
+
+    <button type="submit" (click)="createUser()">Register</button>
+    <p>Already have an account? <a routerLink="">Login</a></p>
+</div>
+</body>
+</html>

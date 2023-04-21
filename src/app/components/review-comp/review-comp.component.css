@@ -1,0 +1,43 @@
+
+.container {
+  background-color: #fce0e4;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 1000px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.perfume-review {
+  margin-top: 50px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.review-card {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.review-rating {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f885a3;
+  margin-right: 20px;
+}
+
+.review-info {
+  flex: 1;
+}
+
+.review-message {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.review-author {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+}

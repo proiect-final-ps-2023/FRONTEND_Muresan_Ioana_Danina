@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <img src="assets/images/background2.png" alt="Perfume Image" width="1150" height="240">
+  <h1>Welcome to The Perfume City</h1>
+  <div class="filters">
+    <label for="gender-filter">Gender:</label>
+    <select id="gender-filter" [(ngModel)]="selectedGender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <label for="brand-filter">Brand:</label>
+    <select id="brand-filter" [(ngModel)]="selectedBrand">
+      <option *ngFor="let brand of brandsList" [value]="brand">{{ brand }}</option>
+    </select>
+    <label for="price-filter">Price:</label>
+    <select id="price-filter" [(ngModel)]="selectedPrice">
+      <option value="0">0 - 100 lei</option>
+      <option value="100">100 - 200 lei</option>
+      <option value="200">200 - 300 lei</option>
+      <option value="300">300 - 400 lei</option>
+      <option value="400">400 - 500 lei</option>
+    </select>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by title...">
+    <button style="border-radius: 20px" (click)="onApplyFilterClick()">Apply Filter</button>
+    <button style="border-radius: 20px" (click)="getAllPerfumes()">See All</button>
+    <button style="border-radius: 20px" (click)="getAllFavorites(idUser)">See Favorites</button>
+    <button mat-icon-button color="primary" (click)="navigateToCart()">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </div>
+  <hr>
+  <div class="perfumes">
+    <div *ngFor="let perfume of perfumes" class="perfume-card">
+      <div class="perfume-square">
+        <div class="perfume-image">
+          <img src="assets/images/{{perfume.image}}" alt="Perfume Image" width="270" height="270">
+        </div>
+        <div class="perfume-info">
+          <h3 style="color: #f885a3; font-size: 35px">{{perfume.title}}</h3>
+          <p><strong>Brand:</strong> {{perfume.brand}}</p>
+          <p><strong>Gender:</strong> {{perfume.gender}}</p>
+          <p><strong>Volume:</strong> {{perfume.volume}}</p>
+          <p><strong>Description:</strong> {{perfume.description}}</p>
+          <p><strong>Top Notes:</strong> {{perfume.fragrance_top_notes}}</p>
+          <p><strong>Middle Notes:</strong> {{perfume.fragrance_middle_notes}}</p>
+          <p><strong>Base Notes:</strong> {{perfume.fragrance_base_notes}}</p>
+          <p><span [class.sale-price]="perfume.new_price">{{perfume.price}} lei </span></p>
+          <p><span [class.sale-price2]="perfume.new_price">{{perfume.new_price}} lei</span></p>
+          <div style="display: flex; align-items: center;">
+            <input type="number" name="quantity" [(ngModel)]="perfume.quantity" min="1" style="width: 50px;">
+            <button style="border-radius: 20px;font-size: 12px;" (click)="createMap(idUser,perfume.id,perfume.quantity)">Add to cart</button>
+          </div>
+          <button style="border-radius: 20px;font-size: 12px;" (click)="getReviewsByPerfumeId(perfume.id)">See reviews</button>
+          <button style="border-radius: 20px;font-size: 12px;"  (click)="isAddReview=true; selectedPerfumeId = perfume.id">Add review</button>
+          <button class="myBtn" id="heartBtn" style="border-radius: 100px;font-size: 27px;color: #b2b2b2; float: right;">
+            <i class="fa fa-heart" aria-hidden="true" (click)="modifyFavorites(idUser,perfume.id,$event.target)"></i>
+          </button>
+          <div class="add-review-form " *ngIf="isAddReview && selectedPerfumeId === perfume.id">
+            <form (submit)="createReview(perfume.id)">
+              <label>Message</label>
+              <input type="text" name="title" [(ngModel)]="review.message">
+              <label>Author</label>
+              <textarea name="description" [(ngModel)]="review.author"></textarea>
+              <label>Rating</label>
+              <input type="number" name="rating" [(ngModel)]="review.rating" min="1" max="5">
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,192 @@
+<div class="container">
+  <h1>Admin Panel</h1>
+  <hr>
+  <button (click)="getAllUsers()">Get All Users</button>
+  <button (click)="getAllPerfumes()">Get All Perfumes</button>
+  <button (click)="isAddPerfume = true">Add Perfume</button>
+  <button (click)="getAllOrders()">Get All Orders</button>
+  <button (click)="createAdminFlag = true">Create New Admin</button>
+
+  <div *ngIf="users">
+    <h2>Users-Admin</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>IsAdmin</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.isAdmin }}</td>
+        <td><button (click)="deleteUser(user.id)">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngFor="let perfume of perfumes" class="perfume-card">
+    <div class="perfume-square">
+      <div class="perfume-info">
+        <h3 style="font-size: 25px; font-style: italic;">{{perfume.title}}</h3>
+        <p>Gender: {{perfume.gender}}</p>
+        <p>Brand: {{perfume.brand}}</p>
+        <p>Top notes: {{perfume.fragrance_top_notes}}</p>
+        <p>Middle notes: {{perfume.fragrance_middle_notes}}</p>
+        <p>Base notes: {{perfume.fragrance_base_notes}}</p>
+        <p>Description: {{perfume.description}}</p>
+        <p>Price: {{perfume.price}}</p>
+        <p>Volume: {{perfume.volume}}</p>
+        <p>Stock: {{perfume.stock}}</p>
+        <button (click)="deletePerfume(perfume.id)">Delete</button>
+        <button (click)="openUpdateModal(perfume)">Update</button>
+        <button (click)="getReviewsByPerfumeId(perfume.id)">Reviews</button>
+        <input [(ngModel)]="saleDiscount" type="number" placeholder="New price" style="width: 90px;">
+        <button (click)="updateSaleDiscount(perfume.id,saleDiscount)">Apply sale</button>
+      </div>
+      <div class="perfume-image">
+        <img src="assets/images/{{perfume.image}}" alt="Perfume Image" width="270" height="270">
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Update modal -->
+    <div *ngIf="showUpdateModal">
+      <h2>Update perfume</h2>
+      <form (submit)="updatePerfume()">
+        <label>
+          Title:
+          <input [(ngModel)]="selectedPerfume.title" name="title" required>
+        </label>
+        <label>
+          Gender:
+          <input [(ngModel)]="selectedPerfume.gender" name="gender" required>
+        </label>
+        <label>
+          Brand:
+          <input [(ngModel)]="selectedPerfume.brand" name="brand" required>
+        </label>
+        <label>
+          Top notes:
+          <input [(ngModel)]="selectedPerfume.fragrance_top_notes" name="fragrance_top_notes" required>
+        </label>
+        <label>
+          Middle notes:
+          <input [(ngModel)]="selectedPerfume.fragrance_middle_notes" name="fragrance_middle_notes" required>
+        </label>
+        <label>
+          Base notes:
+          <input [(ngModel)]="selectedPerfume.fragrance_base_notes" name="fragrance_base_notes" required>
+        </label>
+        <label>
+          Description:
+          <textarea [(ngModel)]="selectedPerfume.description" name="description" required></textarea>
+        </label>
+        <label>
+          Price:
+          <input [(ngModel)]="selectedPerfume.price" name="price" required>
+        </label>
+        <label>
+          Volume:
+          <input [(ngModel)]="selectedPerfume.volume" name="volume" required>
+        </label>
+        <label>
+          Stock:
+          <input [(ngModel)]="selectedPerfume.stock" name="stock" required>
+        </label>
+        <label>
+          Image:
+          <input [(ngModel)]="selectedPerfume.image" name="image" required>
+        </label>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+
+  <div *ngIf="createAdminFlag">
+    <h2>Create new admin account</h2>
+    <form (submit)="createAdmin()">
+      <label>
+        Name:
+        <input [(ngModel)]="newUser.name" name="name" required>
+      </label>
+      <label>
+        Username:
+        <input [(ngModel)]="newUser.username" name="username" required>
+      </label>
+      <label>
+        Email:
+        <input [(ngModel)]="newUser.email" name="email" required>
+      </label>
+      <label>
+        Password:
+        <input [(ngModel)]="newUser.password" name="password" required>
+      </label>
+      <button type="submit">Create account</button>
+    </form>
+    <div *ngIf="createMessage !== ''">{{ createMessage }}</div>
+  </div>
+
+
+  <div *ngIf="isAddPerfume">
+    <h2>Add Perfume</h2>
+    <form (submit)="addPerfume()">
+      <label>
+        Title:
+        <input [(ngModel)]="perfume.title" name="title" type="text">
+      </label>
+      <label>
+        Description:
+        <textarea [(ngModel)]="perfume.description" name="description"></textarea>
+      </label>
+      <label>
+        Price:
+        <input [(ngModel)]="perfume.price" name="price" type="number">
+      </label>
+      <label>
+        Gender:
+        <input [(ngModel)]="perfume.gender" name="gender" type="text">
+      </label>
+      <label>
+        Brand:
+        <input [(ngModel)]="perfume.brand" name="brand" type="text">
+      </label>
+      <label>
+        Stock:
+        <input [(ngModel)]="perfume.stock" name="stock" type="number">
+      </label>
+      <label>
+      Volume:
+      <input [(ngModel)]="perfume.volume" name="volume" type="number">
+    </label>
+      <label>
+      Base Notes:
+      <input [(ngModel)]="perfume.fragrance_base_notes" name="fragrance_base_notes" type="text">
+    </label>
+      <label>
+      Top Notes:
+      <input [(ngModel)]="perfume.fragrance_top_notes" name="fragrance_top_notes" type="text">
+    </label>
+      <label>
+        Middle Notes:
+        <input [(ngModel)]="perfume.fragrance_middle_notes" name="fragrance_middle_notes" type="text">
+      </label>
+      <label>
+        Image:
+        <input [(ngModel)]="perfume.image" name="image" type="text">
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,18 @@
+<div class="container">
+  <h2 style="font-size: 40px">Customer Reviews</h2>
+  <ul class="review-list">
+    <li *ngFor="let review of reviews" class="review-item">
+      <div class="review-rating">
+        {{review.rating}}/5
+        <img src="{{getRatingImage(review.rating)}}" alt="Rating Image" width="40" height="40">
+      </div>
+      <div class="review-info">
+        <p class="review-message">{{review.message}}</p>
+        <p class="review-author">By {{review.author}} on {{review.date}}</p>
+      </div>
+    </li>
+    <li *ngIf="reviews.length === 0" class="review-item">
+      <p class="no-reviews">No reviews yet.</p>
+    </li>
+  </ul>
+</div>

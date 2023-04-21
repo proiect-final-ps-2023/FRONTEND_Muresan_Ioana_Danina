@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #faeeee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffbdbd;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px #ccc;
+      padding: 20px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      background-color: #e14167;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #c01249;
+    }
+    .btn-admin {
+      background-color: #e14167;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    .btn-admin:hover {
+      background-color: #c01249;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Login</h1>
+  <form>
+    <label for="username">Username</label><br>
+    <input type="text" [(ngModel)]="user.username" id="username" name="username"><br>
+
+    <label for="password">Password</label><br>
+    <input type="password"  [(ngModel)]="user.password"  id="password" name="password"><br>
+
+    <button type="submit" (click)="loginUser()">Login User</button>
+    <button type="submit" class="btn-admin" (click)="loginAdmin()">Login Admin</button>
+    <p>Is this your first time here?</p>
+    <button type="button" (click)="goToCreateUser()">Create new account</button>
+    <p> <a href="/reset">Forgot password?</a></p>
+  </form>
+</div>
+
+</body>
+</html>

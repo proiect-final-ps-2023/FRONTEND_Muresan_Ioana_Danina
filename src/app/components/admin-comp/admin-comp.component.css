@@ -1,0 +1,85 @@
+.container {
+  margin: 20px auto;
+  width: 80%;
+  color: #831b39;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  margin-right: 10px;
+  background-color: #f5abb8;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+}
+
+.perfume-card {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.perfume-square {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* add this line */
+  background-color: #f8d1dd;
+  border: 1px solid #83033e;
+  border-radius: 5px;
+  padding: 20px;
+  width: 700px;
+  height: 600px;
+}
+
+.perfume-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 20px;
+  width: 500px;
+}
+
+.perfume-image {
+  margin-right: 20px;
+}
+
+.perfume-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+}
+
+
+
+
+
+
