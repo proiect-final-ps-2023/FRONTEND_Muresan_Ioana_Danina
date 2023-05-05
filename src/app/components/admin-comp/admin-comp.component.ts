@@ -28,6 +28,9 @@ export class AdminCompComponent implements OnInit {
   newUser = new User();
   createAdminFlag: boolean = false;
   createMessage = '';
+  usersLogged: User[] = [];
+  seeAllLoggedUsers: boolean = false;
+  flag: boolean = false;
 
 
   constructor(private userService: UserService,private router: Router, private perfumeService: PerfumeService,
@@ -133,6 +136,27 @@ export class AdminCompComponent implements OnInit {
       data => {
         console.log(data);
         this.createMessage = 'Done!';
+      },
+      error => console.log(error)
+    );
+  }
+
+  getAllLoggedUser()
+  {
+    this.userService.getAllLoggedUser().subscribe(
+      data => {
+        this.usersLogged = data;
+        this.seeAllLoggedUsers=true;
+        console.log(data);
+      },
+      error => console.log(error)
+    );
+  }
+
+  setTransportFree() {
+    this.userService.setTransportFree(this.flag).subscribe(
+      data => {
+       alert("Transportul a fost modificat cu succes!")
       },
       error => console.log(error)
     );

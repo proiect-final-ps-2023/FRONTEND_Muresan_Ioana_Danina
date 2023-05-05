@@ -31,9 +31,16 @@ export class Component1Component implements OnInit{
   idUser: number | undefined;
   showFavorites = false;
   mapList: Map<number, number> = new Map<number, number>();
+  title = 'WebSocketClient';
+  notification: any = {};
 
+  private webSocket: WebSocket;
   constructor(private perfumeService: PerfumeService, private router: Router,
               private reviewService: ReviewService, private userService:UserService) {
+    this.webSocket = new WebSocket('ws://localhost:8083/stocks');
+    this.webSocket.onmessage = (event) => {
+      this.notification = JSON.parse(event.data)
+    };
   }
 
 
@@ -183,6 +190,7 @@ export class Component1Component implements OnInit{
   }
 
   modifyFavorites(idUser: number | undefined, idPerfume: number | undefined,button: any): void {
+    console.log(this.idUser);
     if (this.isRed) {
       this.userService.deleteFavorite(idUser,idPerfume).subscribe(
         data => {
@@ -237,6 +245,49 @@ export class Component1Component implements OnInit{
     this.router.navigate(['/cart']);
   }
 
+  sortPerfumesAsc(): void {
+    this.perfumeService.sortPerfumesAsc().subscribe(
+      (response: Perfume[]) => {
+        console.log(response);
+        this.perfumes = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  sortPerfumesDesc(): void {
+    this.perfumeService.sortPerfumesDesc().subscribe(
+      (response: Perfume[]) => {
+        console.log(response);
+        this.perfumes = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  logout()
+  {     const result = confirm('Sure you want to log out?');
+    if (result) {
+      this.userService.logoutUser(this.userService.userLoggedId).subscribe(
+        () => {
+          console.log("User logged out");
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+      this.router.navigate(['']);
+    }
+  }
+
+  chat()
+  {
+    this.router.navigate(['/chat']);
+  }
 
 
 }

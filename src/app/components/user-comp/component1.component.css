@@ -126,6 +126,13 @@ button:hover {
   align-items: center;
   margin: 10px 0;
 }
+.filters2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end; /* Aliniere spre dreapta */
+  margin: 5px 0;
+}
 
 .filters h3 {
   margin-right: 10px;
@@ -212,6 +219,77 @@ button:hover {
   color: red;
   font-weight: bold;
 }
+
+.icon {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+div {
+  font-family: 'Roboto', sans-serif;
+}
+
+.card {
+  width: 130%;
+  max-width: 410px;
+  height: 130px;
+  background: #f8dadf;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.img {
+  width: 80px;
+  height: 40px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background: linear-gradient(#d7cfcf, #9198e5);
+}
+
+.card:hover>.img {
+  transition: 0.5s ease-in-out;
+  background: linear-gradient(#9198e5, #712020);
+}
+
+.textBox {
+  width: calc(100% - 100px);
+  margin-left: 10px;
+  color: #000000;
+}
+
+.textContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.span {
+  font-size: 20px;
+}
+
+.h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.detail {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
 
 
 

@@ -5,7 +5,36 @@
   <button (click)="getAllPerfumes()">Get All Perfumes</button>
   <button (click)="isAddPerfume = true">Add Perfume</button>
   <button (click)="getAllOrders()">Get All Orders</button>
+  <button (click)="getAllLoggedUser()">Get All Logged Users</button>
   <button (click)="createAdminFlag = true">Create New Admin</button>
+  <button (click)="flag = true ; setTransportFree()">Transport Gratuit</button>
+  <button (click)="flag = false ; setTransportFree()">Transport Negratuit</button>
+
+  <div *ngIf="seeAllLoggedUsers">
+    <h2>All logged in users</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>IsAdmin</th>
+        <th>Login Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of usersLogged">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.isAdmin }}</td>
+        <td>{{ user.loginDate}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div *ngIf="users">
     <h2>Users-Admin</h2>
@@ -27,7 +56,9 @@
         <td>{{ user.password }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.isAdmin }}</td>
-        <td><button (click)="deleteUser(user.id)">Delete</button></td>
+        <td><button (click)="deleteUser(user.id)">
+          <mat-icon>delete</mat-icon></button>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -46,7 +77,9 @@
         <p>Price: {{perfume.price}}</p>
         <p>Volume: {{perfume.volume}}</p>
         <p>Stock: {{perfume.stock}}</p>
-        <button (click)="deletePerfume(perfume.id)">Delete</button>
+        <button (click)="deletePerfume(perfume.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
         <button (click)="openUpdateModal(perfume)">Update</button>
         <button (click)="getReviewsByPerfumeId(perfume.id)">Reviews</button>
         <input [(ngModel)]="saleDiscount" type="number" placeholder="New price" style="width: 90px;">

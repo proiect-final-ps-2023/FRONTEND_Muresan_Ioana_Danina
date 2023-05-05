@@ -90,6 +90,19 @@ export class UserService{
     return this.httpClient.post<Map<number,number>>(`${this.baseUrl}/removeMap/${userId}`, null);
   }
 
+  logoutUser(userId: number | undefined) {
+    return this.httpClient.post(`${this.baseUrl}/logoutUser/${userId}`, null);
+  }
+
+  getAllLoggedUser() {
+    return this.httpClient.get<User[]>(`${this.baseUrl2}/allLoggedIn`);
+  }
+
+  setTransportFree(flag : boolean | undefined) {
+    return this.httpClient.post(`${this.baseUrl2}/transport/${flag}`, null);
+  }
+
+
 
 
 

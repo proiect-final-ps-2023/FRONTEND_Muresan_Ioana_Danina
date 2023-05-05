@@ -1,3 +1,5 @@
+import {Timestamp} from "rxjs";
+
 export class User{
   id: number | undefined;
   name: string | undefined;
@@ -5,4 +7,5 @@ export class User{
   password: string | undefined;
   email: string | undefined;
   isAdmin: string | undefined;
+  loginDate: Timestamp<Number> | undefined;
 }

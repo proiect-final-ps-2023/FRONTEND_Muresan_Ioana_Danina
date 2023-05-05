@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoneCompComponent } from './components/done-comp/done-comp.component';
 import { SignInCompComponent } from './components/register-comp/sign-in-comp.component';
+import { ChatCompComponent } from './components/chat-comp/chat-comp.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { SignInCompComponent } from './components/register-comp/sign-in-comp.com
     OrderCompComponent,
     CartCompComponent,
     DoneCompComponent,
-    SignInCompComponent
+    SignInCompComponent,
+    ChatCompComponent
   ],
     imports: [
         BrowserModule,

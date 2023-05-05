@@ -43,4 +43,12 @@ export class PerfumeService{
   findPerfumesByPriceRange(minPrice: number, maxPrice: number) {
     return this.httpClient.get<Perfume[]>(`${this.baseUrl + '/priceBetween'}/${minPrice}/${maxPrice}`);
   }
+
+  sortPerfumesAsc() {
+    return this.httpClient.get<Perfume[]>(`${this.baseUrl + '/sort'}`);
+  }
+
+  sortPerfumesDesc() {
+    return this.httpClient.get<Perfume[]>(`${this.baseUrl + '/sortDesc'}`);
+  }
 }

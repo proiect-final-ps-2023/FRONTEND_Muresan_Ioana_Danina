@@ -8,6 +8,9 @@ import {OrderCompComponent} from "./components/order-comp/order-comp.component";
 import {CartCompComponent} from "./components/cart-comp/cart-comp.component";
 import {DoneCompComponent} from "./components/done-comp/done-comp.component";
 import {SignInCompComponent} from "./components/register-comp/sign-in-comp.component";
+import {ChatCompComponent} from "./components/chat-comp/chat-comp.component";
+
+
 
 const routes: Routes = [{path: 'all', component: Component1Component},
                         {path: '', component: LoginCompComponent},
@@ -16,7 +19,8 @@ const routes: Routes = [{path: 'all', component: Component1Component},
                         {path: 'orders', component: OrderCompComponent},
                         {path: 'cart', component: CartCompComponent},
                         {path: 'done', component: DoneCompComponent},
-                        {path: 'sign', component: SignInCompComponent}];
+                        {path: 'sign', component: SignInCompComponent},
+                        {path: 'chat', component: ChatCompComponent}];
 
 
 @NgModule({
