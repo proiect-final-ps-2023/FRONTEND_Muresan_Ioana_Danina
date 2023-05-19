@@ -1,15 +1,33 @@
 <div class="container">
   <h1>Admin Panel</h1>
   <hr>
-  <button (click)="getAllUsers()">Get All Users</button>
-  <button (click)="getAllPerfumes()">Get All Perfumes</button>
-  <button (click)="isAddPerfume = true">Add Perfume</button>
-  <button (click)="getAllOrders()">Get All Orders</button>
-  <button (click)="getAllLoggedUser()">Get All Logged Users</button>
-  <button (click)="createAdminFlag = true">Create New Admin</button>
-  <button (click)="flag = true ; setTransportFree()">Transport Gratuit</button>
-  <button (click)="flag = false ; setTransportFree()">Transport Negratuit</button>
-
+  <div class="button-box">
+    <button class="button" (click)="getAllUsers()">Get All Users</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="getAllPerfumes()">Get All Perfumes</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="isAddPerfume = true">Add Perfume</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="getAllOrders()">Get All Orders</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="getAllLoggedUser()">Get All Logged Users</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="createAdminFlag = true">Create New Admin</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="flag = true; setTransportFree()">Transport Gratuit</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="flag = false; setTransportFree()">Transport Negratuit</button>
+  </div>
+  <div class="button-box">
+    <button class="button" (click)="exportPerfumesToXML()">Export perfumes to XML</button>
+  </div>
   <div *ngIf="seeAllLoggedUsers">
     <h2>All logged in users</h2>
     <table>
@@ -151,19 +169,44 @@
     <form (submit)="createAdmin()">
       <label>
         Name:
-        <input [(ngModel)]="newUser.name" name="name" required>
+        <input [(ngModel)]="newUser.name" name="name" required #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert">
+          <div *ngIf="name.errors?.['required']" class="error-text">
+            *Name is required!
+          </div>
+        </div>
       </label>
       <label>
         Username:
-        <input [(ngModel)]="newUser.username" name="username" required>
+        <input [(ngModel)]="newUser.username" name="username" required #username="ngModel">
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+             class="alert">
+          <div *ngIf="username.errors?.['required']" class="error-text">
+            *Username is required!
+          </div>
+        </div>
       </label>
       <label>
         Email:
-        <input [(ngModel)]="newUser.email" name="email" required>
+        <input [(ngModel)]="newUser.email" name="email" required #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+             class="alert">
+          <div *ngIf="email.errors?.['required']" class="error-text">
+            *Email is required!
+          </div>
+        </div>
+
       </label>
       <label>
         Password:
-        <input [(ngModel)]="newUser.password" name="password" required>
+        <input [(ngModel)]="newUser.password" name="password" required #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+             class="alert">
+          <div *ngIf="password.errors?.['required']" class="error-text">
+            *Password is required!
+          </div>
+        </div>
       </label>
       <button type="submit">Create account</button>
     </form>
@@ -176,47 +219,122 @@
     <form (submit)="addPerfume()">
       <label>
         Title:
-        <input [(ngModel)]="perfume.title" name="title" type="text">
+        <input [(ngModel)]="perfume.title" name="title" type="text" required #title="ngModel">
+        <div *ngIf="title.invalid && (title.dirty || title.touched)"
+             class="alert">
+          <div *ngIf="title.errors?.['required']" class="error-text">
+            *Title is required!
+          </div>
+        </div>
       </label>
       <label>
         Description:
-        <textarea [(ngModel)]="perfume.description" name="description"></textarea>
+        <textarea [(ngModel)]="perfume.description" name="description" required #description="ngModel"></textarea>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)"
+             class="alert">
+          <div *ngIf="description.errors?.['required']" class="error-text">
+            *Description is required!
+          </div>
+        </div>
       </label>
       <label>
         Price:
-        <input [(ngModel)]="perfume.price" name="price" type="number">
+        <input [(ngModel)]="perfume.price" name="price" type="number" required min="0" #price="ngModel">
+        <div *ngIf="price.invalid && (price.dirty || price.touched)"
+             class="alert">
+          <div *ngIf="price.errors?.['required']" class="error-text">
+            *Price is required and must be a positive number!
+          </div>
+          <div *ngIf="price.errors?.['min']" class="error-text">
+            *Price must be a positive number!
+          </div>
+        </div>
       </label>
       <label>
         Gender:
-        <input [(ngModel)]="perfume.gender" name="gender" type="text">
+        <input [(ngModel)]="perfume.gender" name="gender" type="text" required #gender="ngModel">
+        <div *ngIf="gender.invalid && (gender.dirty || gender.touched)"
+             class="alert">
+          <div *ngIf="gender.errors?.['required']" class="error-text">
+            *Gender is required!
+          </div>
+        </div>
       </label>
       <label>
         Brand:
-        <input [(ngModel)]="perfume.brand" name="brand" type="text">
+        <input [(ngModel)]="perfume.brand" name="brand" type="text" required #brand="ngModel">
+        <div *ngIf="brand.invalid && (brand.dirty || brand.touched)"
+             class="alert">
+          <div *ngIf="brand.errors?.['required']" class="error-text">
+            *Brand is required!
+          </div>
+        </div>
       </label>
       <label>
         Stock:
-        <input [(ngModel)]="perfume.stock" name="stock" type="number">
+        <input [(ngModel)]="perfume.stock" name="stock" type="number" required min="0" #stock="ngModel">
+        <div *ngIf="stock.invalid && (stock.dirty || stock.touched)"
+             class="alert">
+          <div *ngIf="stock.errors?.['required']" class="error-text">
+            *Stock is required and must be a positive number!
+          </div>
+          <div *ngIf="stock.errors?.['min']" class="error-text">
+            *Stock must be a positive number!
+          </div>
+        </div>
       </label>
       <label>
       Volume:
-      <input [(ngModel)]="perfume.volume" name="volume" type="number">
+      <input [(ngModel)]="perfume.volume" name="volume" type="number" required min="0" #volume="ngModel">
+        <div *ngIf="volume.invalid && (volume.dirty || volume.touched)"
+             class="alert">
+          <div *ngIf="volume.errors?.['required']" class="error-text">
+            *Volume is required and must be a positive number!
+          </div>
+          <div *ngIf="volume.errors?.['min']" class="error-text">
+            *Volume must be a positive number!
+          </div>
+        </div>
     </label>
       <label>
       Base Notes:
-      <input [(ngModel)]="perfume.fragrance_base_notes" name="fragrance_base_notes" type="text">
+      <input [(ngModel)]="perfume.fragrance_base_notes" name="fragrance_base_notes" type="text" required #fgb="ngModel">
+        <div *ngIf="fgb.invalid && (fgb.dirty || fgb.touched)"
+             class="alert">
+          <div *ngIf="fgb.errors?.['required']" class="error-text">
+            *Base notes is required!
+          </div>
+        </div>
     </label>
       <label>
       Top Notes:
-      <input [(ngModel)]="perfume.fragrance_top_notes" name="fragrance_top_notes" type="text">
+      <input [(ngModel)]="perfume.fragrance_top_notes" name="fragrance_top_notes" type="text" required #ftn="ngModel">
+        <div *ngIf="ftn.invalid && (ftn.dirty || ftn.touched)"
+             class="alert">
+          <div *ngIf="ftn.errors?.['required']" class="error-text">
+            *Top notes is required!
+          </div>
+        </div>
     </label>
       <label>
         Middle Notes:
-        <input [(ngModel)]="perfume.fragrance_middle_notes" name="fragrance_middle_notes" type="text">
+        <input [(ngModel)]="perfume.fragrance_middle_notes" name="fragrance_middle_notes" type="text" required #fmn="ngModel">
+        <div *ngIf="fmn.invalid && (fmn.dirty || fmn.touched)"
+             class="alert">
+          <div *ngIf="fmn.errors?.['required']" class="error-text">
+            *Middle notes is required!
+          </div>
+        </div>
       </label>
       <label>
         Image:
-        <input [(ngModel)]="perfume.image" name="image" type="text">
+        <input [(ngModel)]="perfume.image" name="image" type="text" required #image="ngModel">
+        <div *ngIf="image.invalid && (image.dirty || image.touched)"
+             class="alert">
+          <div *ngIf="image.errors?.['required']" class="error-text">
+            *Image is required!
+          </div>
+        </div>
       </label>
       <button type="submit">Submit</button>
     </form>

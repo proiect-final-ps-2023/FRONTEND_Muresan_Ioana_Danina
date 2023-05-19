@@ -102,18 +102,9 @@ export class UserService{
     return this.httpClient.post(`${this.baseUrl2}/transport/${flag}`, null);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
+  sendEmail(email: string | undefined) {
+    return this.httpClient.post(`${this.baseUrl}/sendEmail/${email}`, null);
+  }
 
 
 }

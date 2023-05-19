@@ -162,5 +162,15 @@ export class AdminCompComponent implements OnInit {
     );
   }
 
+  exportPerfumesToXML() {
+    this.perfumeService.exportPerfumesToXML().subscribe(
+      data => {
+        console.log(data);
+        alert("Exportul a fost realizat cu succes!")
+      },
+      error => console.log(error)
+    );
+  }
+
 
 }

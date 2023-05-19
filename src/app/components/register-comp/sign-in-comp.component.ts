@@ -22,6 +22,9 @@ export class SignInCompComponent implements OnInit{
     },error => {
       alert("User failed");
     })
+    this.userService.sendEmail("ioanamuresan160@yahoo.com").subscribe(data=>{
+    },error => {
+    })
   }
 
 }

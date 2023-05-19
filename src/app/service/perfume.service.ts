@@ -51,4 +51,8 @@ export class PerfumeService{
   sortPerfumesDesc() {
     return this.httpClient.get<Perfume[]>(`${this.baseUrl + '/sortDesc'}`);
   }
+
+  exportPerfumesToXML() {
+    return this.httpClient.get(`${this.baseUrl + '/exportPerfumes'}`, {responseType: 'text'});
+  }
 }

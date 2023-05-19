@@ -49,6 +49,11 @@
     button:hover {
       background-color: #c01249;
     }
+    .error-text {
+      color: red;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -56,17 +61,37 @@
 
     <h2>Register</h2>
     <label for="name">Name</label><br>
-    <input type="text" [(ngModel)]="userNew.name" id="name" name="name"><br>
-
+    <input type="text" required   [(ngModel)]="userNew.name" id="name" name="name" #name="ngModel"><br>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+       class="alert">
+      <div *ngIf="name.errors?.['required']" class="error-text">
+        *Name is required!
+      </div>
+     </div>
     <label for="email">Email</label><br>
-    <input type="text" [(ngModel)]="userNew.email" id="email" name="email"><br>
-
+    <input type="text" required [(ngModel)]="userNew.email" id="email" name="email"  #email="ngModel"><br>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+       class="alert">
+      <div *ngIf="email.errors?.['required']" class="error-text">
+      *Email is required!
+      </div>
+    </div>
     <label for="username ">Username</label><br>
-    <input type="text" [(ngModel)]="userNew.username" id="username " name="username"><br>
-
+    <input type="text" required [(ngModel)]="userNew.username" id="username " name="username" #username="ngModel"><br>
+    <div *ngIf="username.invalid && (username.dirty || username.touched)"
+       class="alert">
+      <div *ngIf="username.errors?.['required']" class="error-text">
+      *Username is required!
+      </div>
+    </div>
     <label for="new-password">Password</label><br>
-    <input type="password"  [(ngModel)]="userNew.password"  id="new-password" name="new-password"><br>
-
+    <input type="password"  required  [(ngModel)]="userNew.password"  id="new-password" name="new-password" #password="ngModel"><br>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+       class="alert">
+      <div *ngIf="password.errors?.['required']" class="error-text">
+      *Password is required!
+      </div>
+    </div>
     <button type="submit" (click)="createUser()">Register</button>
     <p>Already have an account? <a routerLink="">Login</a></p>
 </div>
